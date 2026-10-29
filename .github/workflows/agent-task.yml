@@ -1,0 +1,75 @@
+name: Coding agent task
+
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: "Task for the coding agent to implement in this repository"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: coding-agent-task
+  cancel-in-progress: false
+
+jobs:
+  implement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Require configured agent credential
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::Add ANTHROPIC_API_KEY in repository Settings > Secrets and variables > Actions to enable agent execution."
+            exit 1
+          fi
+      - name: Install Claude Code
+        run: npm install --global @anthropic-ai/claude-code
+      - name: Implement bounded task
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TASK: ${{ inputs.task }}
+        run: |
+          claude --print "$TASK
+
+          Rules:
+          - Modify only this existing repository.
+          - Do not read or modify credentials, secrets, or environment files.
+          - Do not connect a real database or run migrations in this phase.
+          - Do not claim 3D reconstruction works unless a real provider is integrated and tested.
+          - Add tests when practical and run npm run build.
+          - Do not deploy to production.
+          - Report changed files, checks, and blockers."
+      - name: Validate build
+        run: npm run build
+      - name: Create a branch and pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TASK: ${{ inputs.task }}
+        run: |
+          branch="agent/$(date -u +%Y%m%d%H%M%S)"
+          git checkout -b "$branch"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No code changes produced."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "feat: implement requested agent task"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" --title "Agent task: $TASK" --body "Automated implementation. Build validation passed; review changes before merging."
