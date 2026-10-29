@@ -13,3 +13,23 @@
 .market-card-photo,.market-hero-image{border-radius:14px}
 .market-bottom-nav{background:#fffdf9}
 @media(max-width:600px){.market-topbar{background:#fbf8f2}.market-hero{padding-top:28px}}
+
+
+/* App shell: navegación móvil persistente y tarjetas táctiles */
+.market-mobile-nav{display:none}
+@media(max-width:650px){
+ .market-page{padding-bottom:78px}
+ .market-topbar{position:sticky;top:0;z-index:15;backdrop-filter:blur(16px);box-shadow:0 4px 18px #261a1208}
+ .market-brand-mark{box-shadow:0 5px 12px #b7191f24}
+ .market-search{min-height:52px;box-shadow:0 8px 22px #281d1608}
+ .market-categories button{min-height:40px;padding-inline:17px}
+ .market-card{border:1px solid #eee6dc;box-shadow:0 5px 18px #30251a08}
+ .market-card-photo{border-radius:0;height:145px}
+ .market-card-title h3{font-size:16px}
+ .market-open{color:#b7191f}
+ .market-mobile-nav{position:fixed;z-index:50;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:#fffdf9f5;border-top:1px solid #e9e1d7;box-shadow:0 -8px 28px #20170f0b;backdrop-filter:blur(18px)}
+ .market-mobile-nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#817b72;font-size:10px;font-weight:600;padding:4px 0}
+ .market-mobile-nav a.current{color:#b7191f}
+ .market-mobile-nav a.current:before{content:'';position:absolute;top:0;width:28px;height:3px;border-radius:0 0 3px 3px;background:#b7191f}
+ .market-disclaimer{padding-bottom:12px}
+}
