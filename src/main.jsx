@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Search, ShoppingBag, Plus, Minus, Utensils, Clock, Leaf, ArrowRight, Menu, X, Box, ChefHat } from 'lucide-react';
 import './style.css';
 import AdminApp from './admin.jsx';
+import CheckoutUpsell from './components/CheckoutUpsell.jsx';
 
 const dishes = [
  {id:1,name:'Pastel de choclo',category:'Tradición chilena',price:10990,desc:'Pino de vacuno, pollo, huevo y aceituna bajo una suave cubierta de choclo.',tag:'Favorito',emoji:'🌽'},
