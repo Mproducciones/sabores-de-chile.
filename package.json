@@ -1,7 +1,7 @@
 {
   "name": "sabores-de-chile",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.78.0",
     "@vitejs/plugin-react": "latest",
     "vite": "latest",
     "react": "latest",
