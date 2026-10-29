@@ -1,0 +1,10 @@
+{
+  "name": "Sabores de Chile",
+  "short_name": "Sabores",
+  "description": "Carta digital y gestión gastronómica",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f5ef",
+  "theme_color": "#173c32",
+  "icons": []
+}
