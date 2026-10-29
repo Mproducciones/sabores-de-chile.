@@ -34,7 +34,9 @@ export default function InventoryIntelligence() {
   const [newQty, setNewQty] = useState('1');
   const [newDays, setNewDays] = useState('3');
   const [message, setMessage] = useState('');
-  useEffect(() => {\n    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); } catch { /* Storage may be disabled; keep the current session usable. */ }\n  }, [items]);
+  useEffect(() => {
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); } catch { /* Storage may be disabled; keep the current session usable. */ }
+  }, [items]);
   const suggestions = useMemo(() => items.filter(i => i.days <= 3 || i.qty < i.min || i.qty >= i.min * 1.6), [items]);
   const visible = useMemo(() => items.filter(i => {
     const matches = i.name.toLowerCase().includes(search.toLowerCase());
