@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Search, ShoppingBag, Plus, Minus, Utensils, Clock, Leaf, ArrowRight, Menu, X, Box, ChefHat } from 'lucide-react';
 import './style.css';
+import AdminApp from './admin.jsx';
 
 const dishes = [
  {id:1,name:'Pastel de choclo',category:'Tradición chilena',price:10990,desc:'Pino de vacuno, pollo, huevo y aceituna bajo una suave cubierta de choclo.',tag:'Favorito',emoji:'🌽'},
@@ -36,4 +37,4 @@ function App(){
   {showCart&&<div className="overlay" onClick={()=>setShowCart(false)}><aside className="cart-panel" onClick={e=>e.stopPropagation()}><div className="cart-head"><div><span className="section-kicker">TU EXPERIENCIA</span><h2>Tu pedido <span>({count})</span></h2></div><button className="icon-button" onClick={()=>setShowCart(false)} aria-label="Cerrar"><X/></button></div>{count===0?<div className="empty-cart"><ShoppingBag size={32}/><h3>Tu mesa está esperando</h3><p>Agrega tus preparaciones favoritas para verlas aquí.</p><button className="primary" onClick={()=>setShowCart(false)}>Volver a la carta</button></div>:<><div className="cart-lines">{dishes.filter(d=>cart[d.id]).map(d=><div className="cart-line" key={d.id}><span className="line-emoji">{d.emoji}</span><div className="line-info"><strong>{d.name}</strong><span>{money(d.price)}</span><div className="quantity"><button onClick={()=>change(d.id,-1)}><Minus size={13}/></button><b>{cart[d.id]}</b><button onClick={()=>change(d.id,1)}><Plus size={13}/></button></div></div><strong>{money(d.price*cart[d.id])}</strong></div>)}</div><div className="cart-total"><span>Total estimado</span><strong>{money(total)}</strong></div><p className="demo-note">Demostración: el pedido aún no se envía a una cocina ni se guarda en un sistema de ventas.</p><button className="primary full" onClick={()=>setNotice('Esta versión es una demostración. Próximamente conectaremos el pedido con el restaurante.')}>Continuar pedido <ArrowRight size={17}/></button>{notice&&<p className="notice">{notice}</p>}</>}</aside></div>}
  </div>
 }
-createRoot(document.getElementById('root')).render(<App/>);
+createRoot(document.getElementById('root')).render(window.location.pathname.startsWith('/admin') ? <AdminApp/> : <App/>);
