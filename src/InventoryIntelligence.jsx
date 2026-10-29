@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AlertTriangle, ArrowDown, ArrowUp, Bell, Check, Clock3, Leaf, Plus, Search, ShoppingBag, Sparkles, Trash2, TrendingDown } from 'lucide-react';
 
 const seed = [
@@ -12,9 +12,20 @@ const seed = [
 
 const money = n => new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(n);
 const urgency = item => item.days <= 1 ? 'urgent' : item.days <= 3 ? 'soon' : item.qty < item.min ? 'low' : 'ok';
+const STORAGE_KEY = 'sabores-de-chile:inventory-demo:v1';
+function readInventoryDemo() {
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    if (!saved) return seed;
+    const parsed = JSON.parse(saved);
+    return Array.isArray(parsed) ? parsed : seed;
+  } catch {
+    return seed;
+  }
+}
 
 export default function InventoryIntelligence() {
-  const [items, setItems] = useState(seed);
+  const [items, setItems] = useState(readInventoryDemo);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('Todos');
   const [draft, setDraft] = useState(null);
@@ -23,7 +34,7 @@ export default function InventoryIntelligence() {
   const [newQty, setNewQty] = useState('1');
   const [newDays, setNewDays] = useState('3');
   const [message, setMessage] = useState('');
-  const [adjustments, setAdjustments] = useState({});
+  useEffect(() => {\n    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); } catch { /* Storage may be disabled; keep the current session usable. */ }\n  }, [items]);
   const suggestions = useMemo(() => items.filter(i => i.days <= 3 || i.qty < i.min || i.qty >= i.min * 1.6), [items]);
   const visible = useMemo(() => items.filter(i => {
     const matches = i.name.toLowerCase().includes(search.toLowerCase());
@@ -55,7 +66,7 @@ export default function InventoryIntelligence() {
       .inventory-intel{color:#222b25}.ii-sub{color:#758078;margin:-8px 0 22px;font-size:14px}.ii-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0}.ii-stat,.ii-panel{background:#fff;border:1px solid #e9ece8;border-radius:16px;padding:18px}.ii-stat span{display:block;color:#7a837d;font-size:12px}.ii-stat strong{display:block;font-size:25px;letter-spacing:-.6px;margin:7px 0 4px}.ii-stat small{color:#7a837d}.ii-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0}.ii-search{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e4e8e3;border-radius:10px;padding:10px 12px;min-width:220px;flex:1}.ii-search input{border:0;outline:0;min-width:0;width:100%;font:inherit}.ii-select,.ii-input{border:1px solid #e2e7e1;border-radius:9px;padding:9px 10px;background:#fff;color:#29332c;font:inherit}.ii-btn{border:1px solid #dce4db;background:#fff;border-radius:10px;padding:10px 13px;display:inline-flex;align-items:center;gap:7px;cursor:pointer;color:#29382d;font-weight:600}.ii-btn-primary{background:#214b37;color:#fff;border-color:#214b37}.ii-btn:disabled{opacity:.4;cursor:not-allowed}.ii-table-wrap{overflow-x:auto}.ii-table{width:100%;border-collapse:collapse;min-width:720px}.ii-table th{text-align:left;font-size:11px;color:#858d87;text-transform:uppercase;letter-spacing:.06em;padding:13px 10px;border-bottom:1px solid #edf0ec}.ii-table td{padding:15px 10px;border-bottom:1px solid #f0f2ef;font-size:13px}.ii-ingredient{font-weight:700}.ii-muted{color:#858d87;font-size:12px;margin-top:4px}.ii-level{height:5px;background:#edf0ec;border-radius:99px;overflow:hidden;min-width:72px;margin-top:7px}.ii-level span{display:block;height:100%;background:#568265;border-radius:99px}.ii-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:5px 8px;font-size:11px;font-weight:700;white-space:nowrap}.ii-urgent{background:#fff0ed;color:#b63d2f}.ii-soon{background:#fff5df;color:#91651b}.ii-low{background:#fce9e8;color:#b63d2f}.ii-ok{background:#eaf5ec;color:#2e6b43}.ii-qty{display:flex;align-items:center;gap:8px}.ii-qty button{width:26px;height:26px;border-radius:7px;border:1px solid #e0e5df;background:#fff;display:grid;place-items:center;cursor:pointer}.ii-suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.ii-suggestion{border:1px solid #e8ece7;border-radius:13px;padding:15px;display:flex;align-items:flex-start;gap:12px}.ii-suggestion-icon{width:38px;height:38px;border-radius:11px;background:#edf5ed;display:grid;place-items:center;color:#356b46;flex-shrink:0}.ii-suggestion h3{margin:0 0 5px;font-size:14px}.ii-suggestion p{margin:0 0 12px;color:#7b847d;font-size:12px;line-height:1.45}.ii-suggestion .ii-btn{padding:8px 10px;font-size:12px}.ii-note{display:flex;gap:9px;align-items:flex-start;background:#f5f8f3;border-radius:12px;padding:13px 15px;color:#526456;font-size:12px;margin:16px 0}.ii-draft{border:1px solid #cddfce;background:#f6faf5;border-radius:14px;padding:18px;margin-top:16px}.ii-draft h3{margin:0 0 8px}.ii-draft p{color:#657368;font-size:13px}.ii-add-form{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.ii-toast{margin:12px 0;color:#3b7147;font-size:13px}.ii-empty{padding:28px;text-align:center;color:#7c857e;font-size:13px}@media(max-width:900px){.ii-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.ii-suggestions{grid-template-columns:1fr}}@media(max-width:520px){.ii-stats{gap:8px}.ii-stat{padding:13px}.ii-stat strong{font-size:21px}.ii-panel{padding:13px}.ii-toolbar{align-items:stretch}.ii-search{min-width:100%}.ii-select{flex:1}}
     `}</style>
     <div className="page-title-row"><div><div className="admin-eyebrow">ABASTECIMIENTO</div><h1>Inventario inteligente</h1><p>Anticipa mermas, controla existencias y convierte ingredientes urgentes en promociones sugeridas.</p></div><button className="ii-btn ii-btn-primary" onClick={() => setShowAdd(v => !v)}><Plus size={16}/> Nuevo ingrediente</button></div>
-    <p className="ii-sub">Datos de ejemplo editables localmente; aún no se sincronizan con un servidor ni con proveedores.</p>
+    <p className="ii-sub">Modo demostración: los cambios se conservan en este navegador, pero todavía no se sincronizan entre dispositivos ni con un servidor.</p>
     <div className="ii-stats">
       <div className="ii-stat"><span>Ingredientes registrados</span><strong>{items.length}</strong><small>en esta vista</small></div>
       <div className="ii-stat"><span>Prioridad de frescura</span><strong>{totals.urgent}</strong><small>calidad estimada ≤ 1 día</small></div>
