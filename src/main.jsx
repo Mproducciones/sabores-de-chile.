@@ -17,6 +17,7 @@ const dishes = [
 ];
 const money=n=>new Intl.NumberFormat('es-CL',{style:'currency',currency:'CLP',maximumFractionDigits:0}).format(n);
 function App(){
+ const restaurantName = new URLSearchParams(window.location.search).get('local') || 'Sabores de Chile';
  const [cart,setCart]=useState(()=>{try{return JSON.parse(localStorage.getItem('sabores-cart-demo')||'{}')}catch{return {}}});
  const [category,setCategory]=useState('Todo');
  const [search,setSearch]=useState('');
@@ -38,7 +39,7 @@ function App(){
  const add=(id)=>setCart(c=>({...c,[id]:(c[id]||0)+1}));
  const change=(id,delta)=>setCart(c=>({...c,[id]:Math.max(0,(c[id]||0)+delta)}));
  return <div className="app">
-  <header className="topbar"><a className="brand" href="#"><span className="brandmark"><Utensils size={20}/></span><span>sabores<span className="brand-light"> de chile</span><small>COCINA CON ORIGEN</small></span></a><nav><a href="#carta">La carta</a><a href="#historia">Nuestra cocina</a><a href="#visitanos">Visítanos</a></nav><button className="cart-button" onClick={()=>setShowCart(true)}><ShoppingBag size={18}/><span>Tu pedido</span><b>{count}</b></button><button className="mobile-menu" aria-label="Abrir carrito" onClick={()=>setShowCart(true)}><ShoppingBag/></button></header>
+  <header className="topbar"><a className="brand" href="#"><span className="brandmark"><Utensils size={20}/></span><span>{restaurantName}</span></a><nav><a href="#carta">La carta</a><a href="#historia">Nuestra cocina</a><a href="#visitanos">Visítanos</a></nav><button className="cart-button" onClick={()=>setShowCart(true)}><ShoppingBag size={18}/><span>Tu pedido</span><b>{count}</b></button><button className="mobile-menu" aria-label="Abrir carrito" onClick={()=>setShowCart(true)}><ShoppingBag/></button></header>
   <main>
    <section className="hero"><div className="hero-copy"><div className="eyebrow"><span/> COCINA CHILENA CONTEMPORÁNEA</div><h1>Lo nuestro,<br/><em>hecho memorable.</em></h1><p>Sabores honestos, ingredientes de temporada y recetas que nos conectan con casa.</p><a className="primary" href="#carta">Explorar la carta <ArrowRight size={17}/></a><div className="hero-meta"><span><Clock size={16}/> Preparación al momento</span><span><Leaf size={16}/> Ingredientes de estación</span></div></div><div className="hero-image"><div className="image-wash"/><div className="hero-stamp"><span>COCINA</span><strong>con<br/>identidad</strong><span>DESDE CHILE</span></div><div className="hero-caption">Una mesa. Muchas historias.</div></div></section>
    <section className="intro" id="historia"><span className="section-kicker">EL SABOR DE ENCONTRARNOS</span><p>Recetas de siempre, miradas nuevas.<br/><strong>Un lugar para compartir lo que somos.</strong></p><span className="intro-mark">✳</span></section>
