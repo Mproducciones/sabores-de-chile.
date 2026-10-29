@@ -6,9 +6,11 @@ const places = [
   { id: 1, name: 'La Mesa Chilena', type: 'Cocina chilena', rating: '4,8', time: '20–35 min', offer: 'Favoritos de la casa', image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85', tags: ['Chilena', 'Casera'] },
   { id: 2, name: 'Costa & Fuego', type: 'Mar y parrilla', rating: '4,7', time: '25–40 min', offer: 'Menú del día', image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1000&q=85', tags: ['Mariscos', 'Parrilla'] },
   { id: 3, name: 'Verde Vivo', type: 'Fresco y vegetariano', rating: '4,9', time: '15–30 min', offer: 'Opciones frescas', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=85', tags: ['Veggie', 'Fresco'] },
-  { id: 4, name: 'La Buena Masa', type: 'Horno y tradición', rating: '4,6', time: '20–35 min', offer: 'Para compartir', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=85', tags: ['Empanadas', 'Casera'] }
+  { id: 4, name: 'La Buena Masa', type: 'Horno y tradición', rating: '4,6', time: '20–35 min', offer: 'Para compartir', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=85', tags: ['Empanadas', 'Casera'] },
+  { id: 5, name: 'Burger House', type: 'Hamburguesas', rating: '4,5', time: '20–30 min', offer: 'Combos favoritos', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85', tags: ['Hamburguesas'] },
+  { id: 6, name: 'Pizzería Napoli', type: 'Pizzas al horno', rating: '4,4', time: '25–40 min', offer: 'Para compartir', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=85', tags: ['Pizzas'] }
 ];
-const categories = ['Todo', 'Chilena', 'Mariscos', 'Veggie', 'Empanadas'];
+const categories = ['Todo', 'Chilena', 'Hamburguesas', 'Pizzas', 'Mariscos', 'Veggie', 'Empanadas'];
 export default function Marketplace() {
   const [category, setCategory] = useState('Todo');
   const [query, setQuery] = useState('');
@@ -28,7 +30,7 @@ export default function Marketplace() {
       <a href="#explorar" onClick={()=>setCategory('Todo')}><span><Utensils size={21}/></span><small>Todos</small></a>
       <a href="#explorar" onClick={()=>setCategory('Chilena')}><span><Coffee size={21}/></span><small>Chilenos</small></a>
       <a href="#explorar" onClick={()=>setCategory('Hamburguesas')}><span><Utensils size={21}/></span><small>Hamburguesas</small></a>
-      <a href="#explorar" onClick={()=>setCategory('Mariscos')}><span><Fish size={21}/></span><small>Pizzas y más</small></a>
+      <a href="#explorar" onClick={()=>setCategory('Pizzas')}><span><Fish size={21}/></span><small>Pizzas y más</small></a>
       <a href="#explorar" onClick={()=>setCategory('Veggie')}><span><Leaf size={21}/></span><small>Frescos</small></a>
     </section>
     <section className="market-home-promo" id="promociones">
