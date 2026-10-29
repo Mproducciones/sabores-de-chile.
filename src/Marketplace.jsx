@@ -7,6 +7,8 @@ const places = [
   { id: 2, name: 'Costa & Fuego', type: 'Mar y parrilla', rating: '4,7', time: '25–40 min', offer: 'Menú del día', image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1000&q=85', tags: ['Mariscos', 'Parrilla'] },
   { id: 3, name: 'Verde Vivo', type: 'Fresco y vegetariano', rating: '4,9', time: '15–30 min', offer: 'Opciones frescas', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=85', tags: ['Veggie', 'Fresco'] },
   { id: 4, name: 'La Buena Masa', type: 'Horno y tradición', rating: '4,6', time: '20–35 min', offer: 'Para compartir', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=85', tags: ['Empanadas', 'Casera'] },
+  { id: 5, name: 'Burger House', type: 'Hamburguesas', rating: '4,5', time: '20–30 min', offer: 'Combos de la casa', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85', tags: ['Hamburguesas'] },
+  { id: 6, name: 'Pizzería Napoli', type: 'Pizzas', rating: '4,4', time: '25–40 min', offer: 'Pizza para compartir', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=85', tags: ['Pizzas'] },
   { id: 5, name: 'Burger House', type: 'Hamburguesas', rating: '4,5', time: '20–30 min', offer: 'Combos favoritos', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85', tags: ['Hamburguesas'] },
   { id: 6, name: 'Pizzería Napoli', type: 'Pizzas al horno', rating: '4,4', time: '25–40 min', offer: 'Para compartir', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=85', tags: ['Pizzas'] }
 ];
@@ -15,7 +17,7 @@ export default function Marketplace() {
   const [category, setCategory] = useState('Todo');
   const [query, setQuery] = useState('');
   const [favorites, setFavorites] = useState([]);
-  const filtered = useMemo(() => places.filter(p => (category === 'Todo' || p.tags.includes(category)) && (p.name + ' ' + p.type + ' ' + p.offer).toLowerCase().includes(query.toLowerCase())), [category, query]);
+  const filtered = useMemo(() => places.filter(p => (category === 'Todo' || (p.tags.includes(category) || p.type.toLowerCase().includes(category.toLowerCase()) || p.name.toLowerCase().includes(category.toLowerCase()))) && (p.name + ' ' + p.type + ' ' + p.offer).toLowerCase().includes(query.toLowerCase())), [category, query]);
   return <main className="market-page">
     <header className="market-topbar">
       <a className="market-brand" href="/"><span className="market-brand-mark"><Utensils size={19}/></span><span>sabores <i>de chile</i><small>DESCUBRE · ELIGE · DISFRUTA</small></span></a>
