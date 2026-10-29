@@ -102,3 +102,39 @@
  .market-mobile-nav a.current{color:#b7191f}
  .market-mobile-nav a.current:before{display:none}
 }
+
+
+/* Home screen matched to the supplied Sabores de Chile reference */
+.market-home-categories,.market-home-promo{display:none}
+@media(max-width:650px){
+ .market-topbar{display:none}
+ .market-hero{height:490px}
+ .market-hero-photo>img{object-position:center 45%;filter:saturate(1.12)}
+ .market-hero-copy{padding:30px 18px 28px;justify-content:flex-end}
+ .market-hero h1{font-family:Georgia,'Times New Roman',serif;font-size:52px;line-height:.86;letter-spacing:-2px;margin-bottom:16px}
+ .market-hero h1 em{font-style:normal;color:#fff}
+ .market-hero-copy>p{max-width:280px;margin-bottom:17px}
+ .market-home-categories{display:flex;gap:13px;overflow-x:auto;scrollbar-width:none;padding:17px 17px 20px;background:#f7f3eb}
+ .market-home-categories::-webkit-scrollbar{display:none}
+ .market-home-categories a{flex:0 0 58px;display:flex;flex-direction:column;align-items:center;gap:7px;color:#25201c;text-align:center}
+ .market-home-categories a span{display:grid;place-items:center;width:53px;height:53px;border-radius:50%;background:#fffdf8;box-shadow:0 3px 10px #2a1d100c;color:#352a22}
+ .market-home-categories a:first-child span{background:#fff0df;color:#b7191f}
+ .market-home-categories small{font-size:10px;white-space:nowrap}
+ .market-home-promo{display:block;padding:0 17px 24px;background:#f7f3eb}
+ .market-home-promo-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}
+ .market-home-promo-head strong{font-size:16px;font-weight:800;color:#211b17}
+ .market-home-promo-head>a{display:flex;align-items:center;gap:3px;color:#b7191f;font-size:11px;font-weight:700}
+ .market-home-promo-card{position:relative;display:block;height:190px;overflow:hidden;border-radius:15px;background:#2c1b12;color:#fff}
+ .market-home-promo-card:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#20130de8 0%,#20130d9c 45%,#20130d05 100%)}
+ .market-home-promo-card img{width:100%;height:100%;object-fit:cover;object-position:center}
+ .market-home-promo-copy{position:absolute;z-index:1;left:15px;top:16px;bottom:14px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;max-width:58%}
+ .market-home-promo-copy b{font-size:18px;line-height:1.05;font-weight:800}
+ .market-home-promo-copy small{font-size:11px;color:#fff0dd}
+ .market-home-promo-copy em{display:flex;align-items:center;gap:7px;margin-top:3px;padding:8px 11px;border-radius:20px;background:#fffdf8;color:#211b17;font-size:10px;font-style:normal;font-weight:800}
+ .market-listing{padding:20px 17px 30px;background:#f7f3eb;border-top:0}
+ .market-heading h2{font-size:19px}
+ .market-heading p{display:none}
+ .market-categories{display:none}
+ .market-card{grid-template-columns:112px minmax(0,1fr)}
+ .market-mobile-nav{z-index:60}
+}
