@@ -50,6 +50,9 @@ For each iteration:
 
 ## Current status
 - [x] Initial React/Vite storefront and demo cart in GitHub.
+- [x] Restaurant operations dashboard at /admin (local demonstration state only).
+- [x] Responsive admin views for orders, kitchen, menu, stock, cash, team, promotions, 3D and settings.
+- [x] GitHub Actions build quality gate and documented specialist-agent hand-off protocol.
 - [x] Initial production deployment reached Vercel READY.
 - [x] Core multi-tenant schema draft and RLS policies added in repository.
 - [ ] SQL migration executed against a real Supabase project.
