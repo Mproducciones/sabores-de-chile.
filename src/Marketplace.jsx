@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Search, MapPin, Heart, Star, Clock3, ArrowRight, Utensils, SlidersHorizontal, Tag, Home, Compass, TicketPercent, UserRound, Pizza, Fish, Leaf, Coffee } from 'lucide-react';
 import './marketplace.css';
+import { filterRestaurants, readFavorites, writeFavorites } from './domain/restaurant.js';
 
 const places = [
   { id: 1, name: 'La Mesa Chilena', type: 'Cocina chilena', rating: '4,8', time: '20–35 min', offer: 'Favoritos de la casa', image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85', tags: ['Chilena', 'Casera'] },
@@ -9,15 +10,14 @@ const places = [
   { id: 4, name: 'La Buena Masa', type: 'Horno y tradición', rating: '4,6', time: '20–35 min', offer: 'Para compartir', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=85', tags: ['Empanadas', 'Casera'] },
   { id: 5, name: 'Burger House', type: 'Hamburguesas', rating: '4,5', time: '20–30 min', offer: 'Combos de la casa', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85', tags: ['Hamburguesas'] },
   { id: 6, name: 'Pizzería Napoli', type: 'Pizzas', rating: '4,4', time: '25–40 min', offer: 'Pizza para compartir', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=85', tags: ['Pizzas'] },
-  { id: 5, name: 'Burger House', type: 'Hamburguesas', rating: '4,5', time: '20–30 min', offer: 'Combos favoritos', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85', tags: ['Hamburguesas'] },
-  { id: 6, name: 'Pizzería Napoli', type: 'Pizzas al horno', rating: '4,4', time: '25–40 min', offer: 'Para compartir', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=85', tags: ['Pizzas'] }
 ];
 const categories = ['Todo', 'Chilena', 'Hamburguesas', 'Pizzas', 'Mariscos', 'Veggie', 'Empanadas'];
 export default function Marketplace() {
   const [category, setCategory] = useState('Todo');
   const [query, setQuery] = useState('');
-  const [favorites, setFavorites] = useState([]);
-  const filtered = useMemo(() => places.filter(p => (category === 'Todo' || (p.tags.includes(category) || p.type.toLowerCase().includes(category.toLowerCase()) || p.name.toLowerCase().includes(category.toLowerCase()))) && (p.name + ' ' + p.type + ' ' + p.offer).toLowerCase().includes(query.toLowerCase())), [category, query]);
+  const [favorites, setFavorites] = useState(() => readFavorites(typeof window === 'undefined' ? null : window.localStorage));
+  useEffect(() => { writeFavorites(window.localStorage, favorites); }, [favorites]);
+  const filtered = useMemo(() => filterRestaurants(places, category, query), [category, query]);
   return <main className="market-page">
     <header className="market-topbar">
       <a className="market-brand" href="/"><span className="market-brand-mark"><Utensils size={19}/></span><span>sabores <i>de chile</i><small>DESCUBRE · ELIGE · DISFRUTA</small></span></a>
@@ -32,7 +32,7 @@ export default function Marketplace() {
       <a href="#explorar" onClick={()=>setCategory('Todo')}><span><Utensils size={21}/></span><small>Todos</small></a>
       <a href="#explorar" onClick={()=>setCategory('Chilena')}><span><Coffee size={21}/></span><small>Chilenos</small></a>
       <a href="#explorar" onClick={()=>setCategory('Hamburguesas')}><span><Utensils size={21}/></span><small>Hamburguesas</small></a>
-      <a href="#explorar" onClick={()=>setCategory('Pizzas')}><span><Fish size={21}/></span><small>Pizzas y más</small></a>
+      <a href="#explorar" onClick={()=>setCategory('Pizzas')}><span><Pizza size={21}/></span><small>Pizzas y más</small></a>
       <a href="#explorar" onClick={()=>setCategory('Veggie')}><span><Leaf size={21}/></span><small>Frescos</small></a>
     </section>
     <section className="market-home-promo" id="promociones">
