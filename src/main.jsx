@@ -6,6 +6,7 @@ import AdminApp from './admin.jsx';
 import CheckoutUpsell from './components/CheckoutUpsell.jsx';
 import ScreenTemplates from './ScreenTemplates.jsx';
 import Marketplace from './Marketplace.jsx';
+import { calculateCartTotal, normalizeCart } from './domain/restaurant.js';
 
 const dishes = [
  {id:1,name:'Pastel de choclo',category:'Tradición chilena',price:10990,desc:'Pino de vacuno, pollo, huevo y aceituna bajo una suave cubierta de choclo.',tag:'Favorito',emoji:'🌽'},
@@ -18,7 +19,7 @@ const dishes = [
 const money=n=>new Intl.NumberFormat('es-CL',{style:'currency',currency:'CLP',maximumFractionDigits:0}).format(n);
 function App(){
  const restaurantName = new URLSearchParams(window.location.search).get('local') || 'Sabores de Chile';
- const [cart,setCart]=useState(()=>{try{return JSON.parse(localStorage.getItem('sabores-cart-demo')||'{}')}catch{return {}}});
+ const [cart,setCart]=useState(()=>{try{return normalizeCart(JSON.parse(localStorage.getItem('sabores-cart-demo')||'{}'),dishes.map(d=>d.id))}catch{return {}}});
  const [category,setCategory]=useState('Todo');
  const [search,setSearch]=useState('');
  const [showCart,setShowCart]=useState(false);
@@ -35,7 +36,7 @@ function App(){
  const categories=['Todo',...new Set(dishes.map(d=>d.category))];
  const filtered=useMemo(()=>dishes.filter(d=>(category==='Todo'||d.category===category)&&(d.name+' '+d.desc).toLowerCase().includes(search.toLowerCase())),[category,search]);
  const count=Object.values(cart).reduce((a,b)=>a+b,0);
- const total=dishes.reduce((s,d)=>s+d.price*(cart[d.id]||0),0);
+ const total=calculateCartTotal(dishes,cart);
  const add=(id)=>setCart(c=>({...c,[id]:(c[id]||0)+1}));
  const change=(id,delta)=>setCart(c=>({...c,[id]:Math.max(0,(c[id]||0)+delta)}));
  return <div className="app">
