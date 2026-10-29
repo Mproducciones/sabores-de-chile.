@@ -60,3 +60,28 @@ For each iteration:
 - [ ] Real auth, orders, inventory, cash and kitchen workflows.
 - [ ] End-to-end tests and production verification.
 - [ ] 3D assets, AR compatibility checks, payments, push notifications and marketplace.
+
+
+## Método de ingeniería obligatorio para cada módulo
+
+El proyecto combina estándares y prácticas complementarias; no se trata de elegir una sola metodología:
+
+1. **Requisitos verificables**: cada función se expresa como historia de usuario, reglas de negocio, casos límite y criterios de aceptación comprobables.
+2. **UML cuando aporta claridad**: casos de uso para actores y permisos; actividad para flujos; secuencia para interacciones entre app, API y servicios; clases/componentes para dominios e integraciones. Mantener diagramas actualizados con el código, no crear documentación ornamental.
+3. **Arquitectura modular**: separar dominios de marketplace, restaurante/tenant, carta, pedidos, cocina, mesas, caja, inventario/lotes, promociones, equipo y activos 3D. Definir contratos antes de integrar módulos.
+4. **Desarrollo ágil inspirado en Scrum**: mantener un backlog priorizado, elegir una tarea pequeña por ciclo, entregar incrementos demostrables y revisar el resultado. En un proyecto individual asistido por IA, no fingir que existen los roles o ceremonias de un equipo Scrum completo.
+5. **Git y revisión**: cambios pequeños y trazables; preferir ramas y pull requests para tareas del agente; nunca sobrescribir trabajo desconocido.
+6. **CI/CD**: instalar dependencias de forma reproducible, ejecutar lint/tests disponibles y build; bloquear entrega si falla. Preview antes de producción y comprobar la URL después de desplegar.
+7. **Seguridad desde el diseño**: aplicar least privilege, validación server-side, aislamiento entre restaurantes, protección de secretos, auditoría y pruebas de autorización. No conectar ni migrar la base de datos hasta la fase acordada.
+8. **Calidad del 3D**: distinguir carga de modelos GLB/GLTF de reconstrucción automática. Una captura requiere instrucciones, consentimiento, validación, medición física de referencia y proveedor de reconstrucción integrado. Validar el archivo y probar visor y AR por dispositivo; ofrecer fotos como fallback.
+
+### Plantilla mínima de tarea para el agente
+- Objetivo de usuario y problema resuelto.
+- Dominio/módulo afectado y dependencias.
+- Criterios de aceptación observables.
+- Pruebas que deben pasar y casos de fallo.
+- Archivos tocados, evidencia de build/test y limitaciones.
+- Próximo paso priorizado.
+
+### Ciclo de trabajo obligatorio
+**Definir → modelar lo necesario → implementar → probar → revisar seguridad/accesibilidad → compilar → revisar diff → desplegar solo con autorización configurada → verificar → registrar aprendizaje y siguiente tarea.**
