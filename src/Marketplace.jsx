@@ -46,6 +46,7 @@ export default function Marketplace() {
       {filtered.length===0&&<div className="market-empty"><Search size={25}/><h3>No encontramos coincidencias</h3><p>Prueba otra búsqueda o selecciona “Todo”.</p><button onClick={()=>{setCategory('Todo');setQuery('')}}>Limpiar filtros</button></div>}
     </section>
     <footer className="market-footer"><a className="market-brand" href="/"><span className="market-brand-mark"><Utensils size={18}/></span><span>sabores <i>de chile</i><small>DESCUBRE · ELIGE · DISFRUTA</small></span></a><span>Una plataforma para descubrir y apoyar la cocina local.</span><a href="/plantillas">Ver plantillas del producto</a></footer>
-    <nav className="market-mobile-nav" aria-label="Navegación principal"><a className="current" href="/"><Home size={20}/><span>Inicio</span></a><a href="#explorar"><Compass size={20}/><span>Explorar</span></a><a href="#promociones"><TicketPercent size={20}/><span>Ofertas</span></a><a href="/admin"><UserRound size={20}/><span>Mi cuenta</span></a></nav>\n    <p className="market-disclaimer">Prototipo visual con restaurantes, valoraciones y fotografías de muestra. No hay disponibilidad, promociones ni pedidos reales conectados.</p>
+    <nav className="market-mobile-nav" aria-label="Navegación principal"><a className="current" href="/"><Home size={20}/><span>Inicio</span></a><a href="#explorar"><Compass size={20}/><span>Explorar</span></a><a href="#promociones"><TicketPercent size={20}/><span>Ofertas</span></a><a href="/admin"><UserRound size={20}/><span>Mi cuenta</span></a></nav>
+    <p className="market-disclaimer">Prototipo visual con restaurantes, valoraciones y fotografías de muestra. No hay disponibilidad, promociones ni pedidos reales conectados.</p>
   </main>;
 }
