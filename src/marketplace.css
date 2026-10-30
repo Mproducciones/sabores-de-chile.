@@ -1,0 +1,140 @@
+.market-page{min-height:100vh;background:#f7f5ef;color:#20372b;font-family:'DM Sans',sans-serif}.market-topbar{height:82px;padding:0 6.2%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e6e3da;gap:20px}.market-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.6px;line-height:1}.market-brand i{font-style:normal;font-weight:400}.market-brand small{display:block;font-size:7px;letter-spacing:1.6px;color:#7b857a;margin-top:6px}.market-brand-mark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#1b4233;color:#fff}.market-location{display:flex;align-items:center;gap:9px;color:#8e6e4f}.market-location span{display:grid;gap:4px}.market-location small{font-size:7px;letter-spacing:1.5px;color:#8a9187}.market-location b{font-size:11px;color:#304437;font-weight:600}.market-local-link{display:flex;align-items:center;gap:8px;font-size:11px;color:#254634}.market-hero{display:grid;grid-template-columns:.92fr 1.08fr;gap:6%;align-items:center;padding:52px 6.2% 65px}.market-hero-copy{padding:20px 0}.market-eyebrow{display:flex;align-items:center;gap:9px;font-size:9px;font-weight:700;letter-spacing:1.9px;color:#956d4b}.market-eyebrow i{width:22px;height:1px;background:#b17a52}.market-hero h1,.market-promo h2{font-family:'Playfair Display',serif;font-size:clamp(46px,5.3vw,72px);font-weight:500;letter-spacing:-2.5px;line-height:1.04;margin:23px 0 18px}.market-hero h1 em,.market-promo h2 em{font-weight:500;color:#a66c49}.market-hero-copy>p,.market-promo p{max-width:430px;font-size:13px;line-height:1.9;color:#69746a;margin:0 0 24px}.market-search{display:flex;align-items:center;gap:10px;padding:14px 15px;background:#fffdf8;border:1px solid #e4e0d5;border-radius:10px;color:#68776a;box-shadow:0 8px 24px #233b2b08}.market-search input{border:0;outline:0;background:transparent;min-width:0;flex:1;font:inherit;font-size:11px;color:#233b2d}.market-search input::placeholder{color:#92998e}.market-benefits{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px}.market-benefits span{display:flex;align-items:center;gap:7px;font-size:9px;color:#6c796c}.market-benefits svg{color:#a67b55}.market-hero-photo{height:440px;position:relative;overflow:hidden;border-radius:4px;background:#253c2d}.market-hero-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#10271b05 35%,#10271bc7 100%)}.market-hero-photo>img{width:100%;height:100%;object-fit:cover;display:block}.market-photo-note{position:absolute;z-index:1;left:26px;bottom:29px;color:#fff8eb}.market-photo-note small{font-size:7px;letter-spacing:2px;color:#e4c49f}.market-photo-note b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:28px;line-height:1.05;margin-top:9px}.market-photo-index{position:absolute;z-index:1;right:20px;bottom:30px;font-size:8px;letter-spacing:1.4px;color:#fff8ebad}.market-listing{padding:66px 6.2% 90px;background:#fffdf8;border-top:1px solid #e7e3d9;border-bottom:1px solid #e7e3d9}.market-heading{display:flex;justify-content:space-between;align-items:end;gap:20px}.market-heading h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,43px);font-weight:500;letter-spacing:-1px;margin:11px 0 7px}.market-heading p{font-size:11px;color:#7c857b;margin:0}.market-result-count{font-size:9px;color:#8a9388;padding-bottom:4px}.market-categories{display:flex;gap:8px;overflow:auto;padding:27px 0 24px}.market-categories button{border:1px solid #e0e1d8;background:transparent;color:#677368;border-radius:99px;padding:10px 17px;white-space:nowrap;font-size:10px;cursor:pointer}.market-categories button.active{background:#1c4233;border-color:#1c4233;color:white}.market-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.market-card{min-width:0;border:1px solid #eeece4;background:#fff;transition:transform .2s,box-shadow .2s}.market-card:hover{transform:translateY(-3px);box-shadow:0 14px 35px #1d39280d}.market-card-photo{height:205px;position:relative;display:block;overflow:hidden;background:#e5e2d7}.market-card-photo>img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}.market-card:hover .market-card-photo>img{transform:scale(1.035)}.market-card-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#10251b15,transparent 50%,#10251b55)}.market-card-number{position:absolute;z-index:1;left:13px;bottom:13px;font-family:'Playfair Display',serif;font-size:20px;color:#ffffffb8}.market-favorite{position:absolute;z-index:2;right:11px;top:11px;display:grid;place-items:center;width:33px;height:33px;border:0;border-radius:50%;background:#fffdf0ed;color:#2c4937;cursor:pointer}.market-favorite.saved{color:#a64e35}.market-photo-tag{position:absolute;z-index:1;left:12px;top:12px;background:#f8f3e7ed;color:#6c543c;padding:7px 9px;font-size:8px}.market-card-body{padding:15px 14px 13px}.market-card-type{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#9a7858}.market-card-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0 12px}.market-card-title h3{font-family:'Playfair Display',serif;font-weight:500;font-size:19px;line-height:1.1;margin:0}.market-card-title>span{display:flex;align-items:center;gap:4px;font-size:10px;color:#9d7336}.market-card-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:8px;color:#7c867a}.market-card-meta span{display:flex;align-items:center;gap:4px}.market-open{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #eeece4;padding-top:12px;margin-top:15px;font-size:10px;font-weight:700;color:#244b38}.market-empty{text-align:center;padding:55px 20px;color:#6d786e}.market-empty h3{font-family:'Playfair Display',serif;font-size:25px;font-weight:500;color:#243b2d}.market-empty p{font-size:11px}.market-empty button{border:0;background:#1c4233;color:#fff;border-radius:6px;padding:10px 15px;font-size:10px}.market-promo{display:grid;grid-template-columns:1fr .8fr;align-items:center;gap:9%;padding:68px 10%;background:#e9ece3}.market-promo h2{font-size:clamp(34px,4vw,48px);margin:13px 0}.market-promo p{max-width:420px}.market-promo-image{position:relative;height:245px;overflow:hidden}.market-promo-image img{width:100%;height:100%;object-fit:cover}.market-promo-image span{position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:7px;background:#fffdf0ed;padding:10px 12px;font-size:9px;color:#2c4835}.market-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 6.2%;border-bottom:1px solid #e6e3da}.market-footer>span,.market-footer>a:last-child{font-size:9px;color:#7b857b}.market-disclaimer{text-align:center;padding:12px 20px 20px;margin:0;font-size:8px;color:#969b91}@media(max-width:950px){.market-hero{gap:4%;padding-top:35px}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.market-card-photo{height:240px}.market-hero-photo{height:390px}}@media(max-width:650px){.market-topbar{height:70px;padding:0 5%}.market-location{display:none}.market-brand{font-size:16px}.market-brand-mark{width:34px;height:34px}.market-local-link{font-size:9px}.market-hero{grid-template-columns:1fr;gap:25px;padding:32px 5% 40px}.market-hero-copy{padding:0}.market-hero h1{font-size:50px;margin:17px 0 13px}.market-hero-copy>p{font-size:12px}.market-hero-photo{height:300px}.market-photo-note b{font-size:24px}.market-listing{padding:43px 5% 55px}.market-heading{align-items:start}.market-heading h2{font-size:32px}.market-heading p{max-width:280px;line-height:1.6}.market-result-count{display:none}.market-categories{padding:20px 0}.market-grid{gap:12px}.market-card-photo{height:155px}.market-card-body{padding:12px 10px}.market-card-title{align-items:start}.market-card-title h3{font-size:17px}.market-card-title>span{font-size:9px}.market-card-meta{gap:7px}.market-photo-tag{font-size:7px;max-width:calc(100% - 50px)}.market-promo{grid-template-columns:1fr;gap:20px;padding:43px 7%}.market-promo-image{height:205px}.market-footer{padding:22px 5%;flex-wrap:wrap}.market-footer>span{order:3;width:100%}}@media(max-width:380px){.market-grid{grid-template-columns:1fr}.market-card-photo{height:220px}.market-local-link{max-width:105px}.market-brand small{font-size:6px}}
+
+/* Shared visual tokens from the approved 14-screen concept */
+.market-page{--market-red:#b7191f;background:#f7f4ed;color:#211b18}
+.market-brand-mark{background:#b7191f;border-radius:10px}
+.market-hero h1 em,.market-promo h2 em{color:#b7191f}
+.market-eyebrow{color:#a26b53}
+.market-eyebrow i{background:#b7191f}
+.market-search{border-radius:12px}
+.market-button,.market-primary,.market-cta{background:#b7191f!important;border-color:#b7191f!important;color:#fff!important;border-radius:9px}
+.market-category.active,.market-filter.active{background:#b7191f!important;border-color:#b7191f!important;color:#fff!important}
+.market-card,.market-restaurant-card{border-radius:14px;overflow:hidden}
+.market-card-photo,.market-hero-image{border-radius:14px}
+.market-bottom-nav{background:#fffdf9}
+@media(max-width:600px){.market-topbar{background:#fbf8f2}.market-hero{padding-top:28px}}
+
+
+/* App shell: navegación móvil persistente y tarjetas táctiles */
+.market-mobile-nav{display:none}
+@media(max-width:650px){
+ .market-page{padding-bottom:78px}
+ .market-topbar{position:sticky;top:0;z-index:15;backdrop-filter:blur(16px);box-shadow:0 4px 18px #261a1208}
+ .market-brand-mark{box-shadow:0 5px 12px #b7191f24}
+ .market-search{min-height:52px;box-shadow:0 8px 22px #281d1608}
+ .market-categories button{min-height:40px;padding-inline:17px}
+ .market-card{border:1px solid #eee6dc;box-shadow:0 5px 18px #30251a08}
+ .market-card-photo{border-radius:0;height:145px}
+ .market-card-title h3{font-size:16px}
+ .market-open{color:#b7191f}
+ .market-mobile-nav{position:fixed;z-index:50;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:#fffdf9f5;border-top:1px solid #e9e1d7;box-shadow:0 -8px 28px #20170f0b;backdrop-filter:blur(18px)}
+ .market-mobile-nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#817b72;font-size:10px;font-weight:600;padding:4px 0}
+ .market-mobile-nav a.current{color:#b7191f}
+ .market-mobile-nav a.current:before{content:'';position:absolute;top:0;width:28px;height:3px;border-radius:0 0 3px 3px;background:#b7191f}
+ .market-disclaimer{padding-bottom:12px}
+}
+
+
+/* Referencia aprobada: pantalla de inicio móvil, fotográfica y compacta */
+@media(max-width:650px){
+ .market-page{background:#f7f3eb;color:#171412;padding-bottom:84px;font-family:Arial,Helvetica,sans-serif}
+ .market-topbar{height:60px;padding:0 16px;background:#fffdf8;border-bottom:1px solid #e8e0d5;position:relative;box-shadow:none}
+ .market-brand{font-size:16px;gap:8px;color:#191613}
+ .market-brand-mark{width:32px;height:32px;border-radius:50%;background:#b7191f}
+ .market-brand small{display:none}
+ .market-local-link{width:34px;height:34px;overflow:hidden;font-size:0;justify-content:center;border:1px solid #e7ded3;border-radius:50%;color:#241d18}
+ .market-local-link svg{width:17px;height:17px}
+ .market-hero{position:relative;display:block;padding:0;margin:0;height:490px;overflow:hidden;background:#1a1713}
+ .market-hero-photo{position:absolute;inset:0;height:100%;border-radius:0}
+ .market-hero-photo:after{background:linear-gradient(180deg,#100c0870 0%,#100c0810 30%,#100c0850 58%,#100c08f2 100%)}
+ .market-hero-photo>img{object-position:center;filter:saturate(1.08)}
+ .market-photo-note{display:none}
+ .market-photo-index{display:none}
+ .market-hero-copy{position:absolute;inset:0;z-index:2;padding:36px 18px 20px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;color:#fff}
+ .market-eyebrow{font-size:9px;letter-spacing:1.4px;color:#ffe1bd}
+ .market-hero-copy>.market-eyebrow{display:none}
+ .market-hero h1{font-family:Georgia,'Times New Roman',serif;font-size:44px;letter-spacing:-1.8px;line-height:.95;margin:0 0 13px;color:#fff;max-width:300px;text-shadow:0 2px 14px #0008}
+ .market-hero h1 em{color:#fff1d8}
+ .market-hero-copy>p{font-size:12px;line-height:1.5;color:#fff9;max-width:310px;margin:0 0 18px}
+ .market-search{width:100%;min-height:48px;padding:0 13px;border-radius:24px;border:0;background:#fffdf8;color:#24201d;box-shadow:0 5px 18px #0002}
+ .market-search input{font-size:12px;color:#211b17}
+ .market-search input::placeholder{color:#8d8982}
+ .market-search>svg:last-child{display:none}
+ .market-benefits{display:none}
+ .market-listing{padding:22px 16px 30px;background:#f7f3eb;border:0}
+ .market-heading{display:block}
+ .market-heading .market-eyebrow{display:none}
+ .market-heading h2{font-family:Arial,sans-serif;font-size:21px;font-weight:800;letter-spacing:-.6px;margin:0 0 5px;color:#1c1815}
+ .market-heading p{font-size:11px;color:#777069;line-height:1.45}
+ .market-result-count{display:none}
+ .market-categories{gap:8px;padding:16px 0 17px}
+ .market-categories button{min-height:36px;padding:0 15px;border:0;background:#fffdf8;color:#25201b;border-radius:22px;font-size:11px;font-weight:700;box-shadow:0 2px 7px #21180d0a}
+ .market-categories button.active{background:#211b17!important;color:#fff;border-color:#211b17!important}
+ .market-grid{display:flex;flex-direction:column;gap:12px}
+ .market-card{display:grid;grid-template-columns:112px minmax(0,1fr);min-height:112px;border:0;border-radius:15px;background:#fffdf8;box-shadow:0 3px 14px #3022160a}
+ .market-card-photo{height:112px;min-height:112px;border-radius:13px 0 0 13px}
+ .market-card-photo>img{height:100%;object-fit:cover}
+ .market-card-photo:after{background:linear-gradient(180deg,transparent 55%,#1a120c40)}
+ .market-card-number{display:none}
+ .market-photo-tag{left:7px;top:auto;bottom:7px;padding:5px 6px;border-radius:5px;font-size:7px;max-width:95px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .market-favorite{width:27px;height:27px;right:6px;top:6px}
+ .market-favorite svg{width:15px;height:15px}
+ .market-card-body{padding:11px 10px 8px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+ .market-card-type{font-size:8px;letter-spacing:.3px;text-transform:none;color:#80776c}
+ .market-card-title{margin:4px 0 6px;align-items:center}
+ .market-card-title h3{font-family:Arial,sans-serif;font-size:14px;line-height:1.15;font-weight:800;letter-spacing:-.2px}
+ .market-card-title>span{flex-shrink:0;font-size:10px;color:#9b6a0c}
+ .market-card-meta{gap:7px;font-size:9px;color:#716b64}
+ .market-card-meta svg{width:12px;height:12px}
+ .market-open{border-top:0;margin-top:7px;padding-top:0;font-size:10px;color:#b7191f}
+ .market-open svg{width:14px;height:14px}
+ .market-promo{margin:0 16px 25px;padding:0;display:grid;grid-template-columns:1fr;gap:0;background:transparent}
+ .market-promo>div:first-child{order:2;padding:15px 2px}
+ .market-promo h2{font-family:Arial,sans-serif;font-size:25px;letter-spacing:-.8px;line-height:1.05;margin:6px 0 8px;color:#211b17}
+ .market-promo p{font-size:11px;line-height:1.6;margin:0;color:#777069}
+ .market-promo-image{order:1;height:180px;border-radius:15px;overflow:hidden}
+ .market-promo-image img{object-fit:cover}
+ .market-promo-image span{border-radius:8px;color:#b7191f;font-weight:700}
+ .market-footer{display:none}
+ .market-disclaimer{font-size:8px;padding:0 18px 12px;color:#8e877e}
+ .market-mobile-nav{height:64px;box-sizing:content-box;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:#fffdf9;border-top:1px solid #e8e0d6;box-shadow:0 -3px 16px #2b1d100d}
+ .market-mobile-nav a{gap:4px;font-size:9px;font-weight:500}
+ .market-mobile-nav a.current{color:#b7191f}
+ .market-mobile-nav a.current:before{display:none}
+}
+
+
+/* Home screen matched to the supplied Sabores de Chile reference */
+.market-home-categories,.market-home-promo{display:none}
+@media(max-width:650px){
+ .market-topbar{display:none}
+ .market-hero{height:490px}
+ .market-hero-photo>img{object-position:center 45%;filter:saturate(1.12)}
+ .market-hero-copy{padding:30px 18px 28px;justify-content:flex-end}
+ .market-hero h1{font-family:Georgia,'Times New Roman',serif;font-size:52px;line-height:.86;letter-spacing:-2px;margin-bottom:16px}
+ .market-hero h1 em{font-style:normal;color:#fff}
+ .market-hero-copy>p{max-width:280px;margin-bottom:17px}
+ .market-home-categories{display:flex;gap:13px;overflow-x:auto;scrollbar-width:none;padding:17px 17px 20px;background:#f7f3eb}
+ .market-home-categories::-webkit-scrollbar{display:none}
+ .market-home-categories a{flex:0 0 58px;display:flex;flex-direction:column;align-items:center;gap:7px;color:#25201c;text-align:center}
+ .market-home-categories a span{display:grid;place-items:center;width:53px;height:53px;border-radius:50%;background:#fffdf8;box-shadow:0 3px 10px #2a1d100c;color:#352a22}
+ .market-home-categories a:first-child span{background:#fff0df;color:#b7191f}
+ .market-home-categories small{font-size:10px;white-space:nowrap}
+ .market-home-promo{display:block;padding:0 17px 24px;background:#f7f3eb}
+ .market-home-promo-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}
+ .market-home-promo-head strong{font-size:16px;font-weight:800;color:#211b17}
+ .market-home-promo-head>a{display:flex;align-items:center;gap:3px;color:#b7191f;font-size:11px;font-weight:700}
+ .market-home-promo-card{position:relative;display:block;height:190px;overflow:hidden;border-radius:15px;background:#2c1b12;color:#fff}
+ .market-home-promo-card:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#20130de8 0%,#20130d9c 45%,#20130d05 100%)}
+ .market-home-promo-card img{width:100%;height:100%;object-fit:cover;object-position:center}
+ .market-home-promo-copy{position:absolute;z-index:1;left:15px;top:16px;bottom:14px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;max-width:58%}
+ .market-home-promo-copy b{font-size:18px;line-height:1.05;font-weight:800}
+ .market-home-promo-copy small{font-size:11px;color:#fff0dd}
+ .market-home-promo-copy em{display:flex;align-items:center;gap:7px;margin-top:3px;padding:8px 11px;border-radius:20px;background:#fffdf8;color:#211b17;font-size:10px;font-style:normal;font-weight:800}
+ .market-listing{padding:20px 17px 30px;background:#f7f3eb;border-top:0}
+ .market-heading h2{font-size:19px}
+ .market-heading p{display:none}
+ .market-categories{display:none}
+ .market-card{grid-template-columns:112px minmax(0,1fr)}
+ .market-mobile-nav{z-index:60}
+}

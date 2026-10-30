@@ -4,6 +4,9 @@ import { Search, ShoppingBag, Plus, Minus, Utensils, Clock, Leaf, ArrowRight, Me
 import './style.css';
 import AdminApp from './admin.jsx';
 import CheckoutUpsell from './components/CheckoutUpsell.jsx';
+import ScreenTemplates from './ScreenTemplates.jsx';
+import Marketplace from './Marketplace.jsx';
+import { calculateCartTotal, normalizeCart } from './domain/restaurant.js';
 
 const dishes = [
  {id:1,name:'Pastel de choclo',category:'Tradición chilena',price:10990,desc:'Pino de vacuno, pollo, huevo y aceituna bajo una suave cubierta de choclo.',tag:'Favorito',emoji:'🌽'},
@@ -15,7 +18,8 @@ const dishes = [
 ];
 const money=n=>new Intl.NumberFormat('es-CL',{style:'currency',currency:'CLP',maximumFractionDigits:0}).format(n);
 function App(){
- const [cart,setCart]=useState(()=>{try{return JSON.parse(localStorage.getItem('sabores-cart-demo')||'{}')}catch{return {}}});
+ const restaurantName = new URLSearchParams(window.location.search).get('local') || 'Sabores de Chile';
+ const [cart,setCart]=useState(()=>{try{return normalizeCart(JSON.parse(localStorage.getItem('sabores-cart-demo')||'{}'),dishes.map(d=>d.id))}catch{return {}}});
  const [category,setCategory]=useState('Todo');
  const [search,setSearch]=useState('');
  const [showCart,setShowCart]=useState(false);
@@ -32,11 +36,11 @@ function App(){
  const categories=['Todo',...new Set(dishes.map(d=>d.category))];
  const filtered=useMemo(()=>dishes.filter(d=>(category==='Todo'||d.category===category)&&(d.name+' '+d.desc).toLowerCase().includes(search.toLowerCase())),[category,search]);
  const count=Object.values(cart).reduce((a,b)=>a+b,0);
- const total=dishes.reduce((s,d)=>s+d.price*(cart[d.id]||0),0);
+ const total=calculateCartTotal(dishes,cart);
  const add=(id)=>setCart(c=>({...c,[id]:(c[id]||0)+1}));
  const change=(id,delta)=>setCart(c=>({...c,[id]:Math.max(0,(c[id]||0)+delta)}));
  return <div className="app">
-  <header className="topbar"><a className="brand" href="#"><span className="brandmark"><Utensils size={20}/></span><span>sabores<span className="brand-light"> de chile</span><small>COCINA CON ORIGEN</small></span></a><nav><a href="#carta">La carta</a><a href="#historia">Nuestra cocina</a><a href="#visitanos">Visítanos</a></nav><button className="cart-button" onClick={()=>setShowCart(true)}><ShoppingBag size={18}/><span>Tu pedido</span><b>{count}</b></button><button className="mobile-menu" aria-label="Abrir carrito" onClick={()=>setShowCart(true)}><ShoppingBag/></button></header>
+  <header className="topbar"><a className="brand" href="#"><span className="brandmark"><Utensils size={20}/></span><span>{restaurantName}</span></a><nav><a href="#carta">La carta</a><a href="#historia">Nuestra cocina</a><a href="#visitanos">Visítanos</a></nav><button className="cart-button" onClick={()=>setShowCart(true)}><ShoppingBag size={18}/><span>Tu pedido</span><b>{count}</b></button><button className="mobile-menu" aria-label="Abrir carrito" onClick={()=>setShowCart(true)}><ShoppingBag/></button></header>
   <main>
    <section className="hero"><div className="hero-copy"><div className="eyebrow"><span/> COCINA CHILENA CONTEMPORÁNEA</div><h1>Lo nuestro,<br/><em>hecho memorable.</em></h1><p>Sabores honestos, ingredientes de temporada y recetas que nos conectan con casa.</p><a className="primary" href="#carta">Explorar la carta <ArrowRight size={17}/></a><div className="hero-meta"><span><Clock size={16}/> Preparación al momento</span><span><Leaf size={16}/> Ingredientes de estación</span></div></div><div className="hero-image"><div className="image-wash"/><div className="hero-stamp"><span>COCINA</span><strong>con<br/>identidad</strong><span>DESDE CHILE</span></div><div className="hero-caption">Una mesa. Muchas historias.</div></div></section>
    <section className="intro" id="historia"><span className="section-kicker">EL SABOR DE ENCONTRARNOS</span><p>Recetas de siempre, miradas nuevas.<br/><strong>Un lugar para compartir lo que somos.</strong></p><span className="intro-mark">✳</span></section>
@@ -48,4 +52,10 @@ function App(){
   {showCart&&<div className="overlay" onClick={()=>setShowCart(false)}><aside className="cart-panel" onClick={e=>e.stopPropagation()}><div className="cart-head"><div><span className="section-kicker">TU EXPERIENCIA</span><h2>Tu pedido <span>({count})</span></h2></div><button className="icon-button" onClick={()=>setShowCart(false)} aria-label="Cerrar"><X/></button></div>{count===0?<div className="empty-cart"><ShoppingBag size={32}/><h3>Tu mesa está esperando</h3><p>Agrega tus preparaciones favoritas para verlas aquí.</p><button className="primary" onClick={()=>setShowCart(false)}>Volver a la carta</button></div>:<><div className="cart-lines">{dishes.filter(d=>cart[d.id]).map(d=><div className="cart-line" key={d.id}><span className="line-emoji">{d.emoji}</span><div className="line-info"><strong>{d.name}</strong><span>{money(d.price)}</span><div className="quantity"><button onClick={()=>change(d.id,-1)}><Minus size={13}/></button><b>{cart[d.id]}</b><button onClick={()=>change(d.id,1)}><Plus size={13}/></button></div></div><strong>{money(d.price*cart[d.id])}</strong></div>)}</div><div className="cart-total"><span>Total estimado</span><strong>{money(total)}</strong></div><p className="demo-note">Demostración: el pedido aún no se envía a una cocina ni se guarda en un sistema de ventas.</p><CheckoutUpsell items={dishes.filter(d=>!cart[d.id])} money={money} onAdd={add}/><button className="primary full" onClick={()=>setShowCheckout(true)}>Continuar pedido <ArrowRight size={17}/></button>{showCheckout&&<form className="checkout-form" onSubmit={e=>{e.preventDefault();setLastDemoOrder({reference:'DEMO-'+String(Date.now()).slice(-6),total,count,fulfillment});setNotice('');setShowCheckout(false)}}><div className="checkout-heading"><h3>Datos del pedido</h3><button type="button" className="text-button" onClick={()=>setShowCheckout(false)}>Volver</button></div><div className="fulfillment-options"><button type="button" className={fulfillment==="retiro"?"selected":""} onClick={()=>setFulfillment("retiro")}>Retiro en local</button><button type="button" className={fulfillment==="delivery"?"selected":""} onClick={()=>setFulfillment("delivery")}>Despacho</button></div><label>Tu nombre<input required value={customerName} onChange={e=>setCustomerName(e.target.value)} placeholder="Nombre y apellido"/></label><label>Teléfono de contacto<input required type="tel" value={customerPhone} onChange={e=>setCustomerPhone(e.target.value)} placeholder="+56 9 1234 5678"/></label>{fulfillment==="delivery"&&<label>Dirección de entrega<input required value={customerAddress} onChange={e=>setCustomerAddress(e.target.value)} placeholder="Calle, número y comuna"/></label>}<label>Indicaciones (opcional)<textarea value={orderNote} onChange={e=>setOrderNote(e.target.value)} placeholder="Ej. sin cilantro, llamar al llegar" rows="2"/></label><p className="demo-note">Demo únicamente: estos datos no se envían ni guardan en un servidor. No ingreses información sensible.</p><button className="primary full" type="submit">Revisar pedido de demostración</button></form>}{lastDemoOrder&&<section className="demo-order-confirmation" role="status"><span className="section-kicker">RESUMEN DE DEMOSTRACIÓN</span><h3>Vista previa lista</h3><p>Referencia local: <strong>{lastDemoOrder.reference}</strong></p><p>{lastDemoOrder.count} productos · {lastDemoOrder.fulfillment==='retiro'?'Retiro en local':'Despacho solicitado'}</p><div className="demo-order-total"><span>Total estimado</span><strong>{money(lastDemoOrder.total)}</strong></div><p className="demo-note">Esto no es una orden real: no se envió al restaurante, no se guardó en un servidor y no se realizó ningún cobro.</p><button type="button" className="text-button" onClick={()=>setLastDemoOrder(null)}>Cerrar resumen</button></section>}{notice&&<p className="notice" role="status">{notice}</p>}</>}</aside></div>}
  </div>
 }
-createRoot(document.getElementById('root')).render(window.location.pathname.startsWith('/admin') ? <AdminApp/> : <App/>);
+const path = window.location.pathname;
+createRoot(document.getElementById('root')).render(
+  path.startsWith('/admin') ? <AdminApp/> :
+  path.startsWith('/plantillas') ? <ScreenTemplates/> :
+  path.startsWith('/restaurante') ? <App/> :
+  <Marketplace/>
+);

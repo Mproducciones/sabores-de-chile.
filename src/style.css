@@ -129,3 +129,23 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #b879
 .demo-order-total{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid #d9e2d7;border-bottom:1px solid #d9e2d7}
 .demo-order-total strong{font-size:18px}
 .demo-order-confirmation .text-button{margin-top:8px}
+
+/* Visual system aligned to the approved 14-screen reference */
+:root{--sc-cream:#f7f4ed;--sc-red:#b7191f;--sc-red-dark:#97151a;--sc-green:#1c4937;--sc-ink:#211b18;--sc-line:#e8e1d7}
+body{background:var(--sc-cream);color:var(--sc-ink)}
+.topbar{background:#fbf8f2ed;border-color:var(--sc-line)}
+.brandmark,.cart-button b,.categories button.active{background:var(--sc-red);border-color:var(--sc-red)}
+.primary,.primary:hover{background:var(--sc-red);color:#fff;border-radius:9px}
+.add-button,.details-button,.text-button{color:var(--sc-red)}
+.dish-card{border-radius:14px;overflow:hidden;background:#fffdfa;box-shadow:0 4px 18px #3c251008}
+.dish-art{height:235px}
+.dish-tag{border-radius:99px}
+.dish-info{padding:18px}
+.experience{background:#e8ece2;color:var(--sc-ink)}
+.experience .section-kicker{color:var(--sc-red)}
+.experience p{color:#697168}
+.experience-icon{color:var(--sc-green);border-color:#c9d4c7}
+.visit{background:#eee8dc}
+.cart-panel{background:#fbf8f2}
+.quantity button{border-radius:8px}
+@media(max-width:600px){.hero-image{border-radius:16px}.dish-card{border-radius:14px}.dish-art{height:235px}}
