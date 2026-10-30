@@ -176,7 +176,7 @@ create table if not exists public.orders (
   payment_status text not null default 'pending'
     check (payment_status in ('pending','authorized','paid','failed','refunded','cash_on_delivery')),
   subtotal_clp integer not null check (subtotal_clp >= 0),
-  discount_clp integer not null default 0 check (discount_clp >= 0),
+  discount_clp integer not null default 0 check (discount_clp >= 0 and discount_clp <= subtotal_clp),
   delivery_fee_clp integer not null default 0 check (delivery_fee_clp >= 0),
   total_clp integer not null check (total_clp >= 0),
   created_at timestamptz not null default now(),
