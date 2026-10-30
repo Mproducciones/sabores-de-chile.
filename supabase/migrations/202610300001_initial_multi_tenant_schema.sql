@@ -99,7 +99,7 @@ create table if not exists public.menu_items (
   updated_at timestamptz not null default now(),
   unique (restaurant_id, id),
   foreign key (restaurant_id, category_id)
-    references public.menu_categories(restaurant_id, id) on delete set null
+    references public.menu_categories(restaurant_id, id) on delete restrict
 );
 
 create table if not exists public.ingredients (
@@ -157,7 +157,7 @@ create table if not exists public.promotions (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   foreign key (restaurant_id, menu_item_id)
-    references public.menu_items(restaurant_id, id) on delete set null,
+    references public.menu_items(restaurant_id, id) on delete restrict,
   check (ends_at is null or ends_at > starts_at),
   check (discount_percent is not null or promotional_price_clp is not null)
 );
@@ -199,7 +199,7 @@ create table if not exists public.order_items (
   foreign key (restaurant_id, order_id)
     references public.orders(restaurant_id, id) on delete cascade,
   foreign key (restaurant_id, menu_item_id)
-    references public.menu_items(restaurant_id, id) on delete set null
+    references public.menu_items(restaurant_id, id) on delete restrict
 );
 
 create index if not exists idx_restaurants_published on public.restaurants(is_published, city);
